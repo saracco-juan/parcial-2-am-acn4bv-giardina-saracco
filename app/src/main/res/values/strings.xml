@@ -6,4 +6,5 @@
     <string name="imagen_de_perfil_del_usuario">Imagen de perfil del usuario</string>
     <string name="nombre">Nombre</string>
     <string name="usuario">\@usuario</string>
+    <string name="favoritos">Favoritos</string>
 </resources>
