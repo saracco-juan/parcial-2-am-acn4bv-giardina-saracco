@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="Pablo"
+                android:text="@string/pablo"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow"
                 android:textSize="30sp"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:text="pablo.martinez"
+                android:text="@string/pablo_martinez"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow" />
         </LinearLayout>
@@ -143,7 +143,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/bg_followers_container"
                     android:padding="5dp"
-                    android:text="129"
+                    android:text="@string/_129"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
@@ -156,10 +156,10 @@
                     android:layout_height="89dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="SIGUIENDO"
+                    android:text="@string/siguiendo"
                     android:textAlignment="center"
                     android:textColor="@color/bg_yellow"
-                    android:textSize="16dp"  />
+                    android:textSize="16sp"  />
             </LinearLayout>
 
             <LinearLayout
@@ -178,7 +178,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/bg_followers_container"
                     android:padding="5dp"
-                    android:text="30"
+                    android:text="@string/_30"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
@@ -192,10 +192,10 @@
                     android:layout_height="89dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="SEGUIDORES"
+                    android:text="@string/seguidores"
                     android:textAlignment="center"
                     android:textColor="@color/bg_yellow"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -218,27 +218,27 @@
                 android:id="@+id/acerca_de_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACERCA DE"
+                android:text="@string/acerca_de"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/bg_yellow"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/acerca_de_texto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mi nombre es Pablo Martinez. Me llamo la atencion esta aplicación por la variedad de tipografias que ofrecía. Soy progamador front end y pretendo utilizar las fuentes para futuros trabajos."
+                android:text="@string/mi_nombre_es_pablo_martinez_me_llamo_la_atencion_esta_aplicaci_n_por_la_variedad_de_tipografias_que_ofrec_a_soy_progamador_front_end_y_pretendo_utilizar_las_fuentes_para_futuros_trabajos"
                 android:textColor="@color/blue"
                 android:layout_marginBottom="10dp"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Buenos Aires, Argentina"
+                android:text="@string/buenos_aires_argentina"
                 android:textColor="@color/blue"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
