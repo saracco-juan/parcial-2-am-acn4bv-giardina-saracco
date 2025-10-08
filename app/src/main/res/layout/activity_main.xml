@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="@string/nombre"
+                android:text="Pablo"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow"
                 android:textSize="30sp"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:text="@string/usuario"
+                android:text="pablo.martinez"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow" />
         </LinearLayout>
@@ -130,22 +130,25 @@
             <LinearLayout
                 android:id="@+id/siguiendo_card"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:layout_marginEnd="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_width="75dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_followers_container"
                     android:padding="5dp"
                     android:text="129"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -156,28 +159,32 @@
                     android:text="SIGUIENDO"
                     android:textAlignment="center"
                     android:textColor="@color/bg_yellow"
-                    android:textSize="16sp" />
+                    android:textSize="16dp"  />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/seguidores_card"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_width="75dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_followers_container"
                     android:padding="5dp"
                     android:text="30"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -191,6 +198,50 @@
                     android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about_container"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/fav_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seguidores_container"
+            app:layout_constraintVertical_bias="0.19999999"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+           >
+
+            <TextView
+                android:id="@+id/acerca_de_titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACERCA DE"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/bg_yellow"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/acerca_de_texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mi nombre es Pablo Martinez. Me llamo la atencion esta aplicación por la variedad de tipografias que ofrecía. Soy progamador front end y pretendo utilizar las fuentes para futuros trabajos."
+                android:textColor="@color/blue"
+                android:layout_marginBottom="10dp"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buenos Aires, Argentina"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -214,7 +265,7 @@
             android:clipToOutline="true"
             android:outlineProvider="background"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_user"
+            android:src="@drawable/profile_picture"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
