@@ -11,5 +11,6 @@ La pantalla de perfil muestra imagen, nombre, usuario y una breve descripción, 
 - Git y GitHub (versionado)
 
 ## Links útiles
-- Tablero de tareas: https://trello.com/b/waqmBsKT/glypha-giardina-saracco  
+- Tablero de tareas: https://trello.com/b/waqmBsKT/glypha-giardina-saracco
+- Link documentacion | informe: https://docs.google.com/document/d/1gvE-jo9yzQ3mBvKv6nMsWlRJksj47MnfDAIETwfyHlM/edit?tab=t.0#heading=h.xcd7mhhvcyfl
 
