@@ -23,4 +23,10 @@
     <string name="txt_cat_clasica">CLASICA</string>
     <string name="txt_cat_creativa">CREATIVA</string>
     <string name="cat_titulo">Categorías</string>
+    <string name="tendencias_titulo">Tipografias en tendencias</string>
+    <string name="placeholder_input_txt">Escribe aquí para probar la fuente seleccionada</string>
+    <string name="txt_font_roboto">ROBOTO</string>
+    <string name="txt_font_sansation">SANSATION</string>
+    <string name="txt_font_playfair">PLAYFAIR-DISPLAY</string>
+    <string name="txt_font_montserrat">MONTSERRAT</string>
 </resources>
