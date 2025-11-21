@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         textCatCards();
+
         textTendenciasCards();
+
+        fontClickListeners();
     }
 
     private void textCatCards(){
@@ -70,5 +74,55 @@ public class HomeActivity extends AppCompatActivity {
 
         ((TextView) cardSansation.findViewById(R.id.txtCard)).setText(getString(R.string.txt_font_sansation));
         ((TextView) cardSansation.findViewById(R.id.txtCard)).setTypeface(sansation);
+    }
+
+    private void fontClickListeners(){
+
+        View cardRoboto = findViewById(R.id.cardRoboto);
+        View cardPlayFair = findViewById(R.id.cardPlayFair);
+        View cardMontserrat = findViewById(R.id.cardMontserrat);
+        View cardSansation = findViewById(R.id.cardSansation);
+
+        cardRoboto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Typeface roboto   = ResourcesCompat.getFont(getApplicationContext(), R.font.roboto);
+                changeFontTxt(roboto);
+            }
+        });
+
+        cardPlayFair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Typeface playFair   = ResourcesCompat.getFont(getApplicationContext(), R.font.playfair_display);
+                changeFontTxt(playFair);
+            }
+        });
+
+        cardMontserrat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Typeface montserrat   = ResourcesCompat.getFont(getApplicationContext(), R.font.montserrat);
+                changeFontTxt(montserrat);
+            }
+        });
+
+        cardSansation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Typeface sansation   = ResourcesCompat.getFont(getApplicationContext(), R.font.sansation);
+                changeFontTxt(sansation);
+            }
+        });
+
+    }
+
+    private void changeFontTxt(Typeface font){
+        TextView font_test_txt = findViewById(R.id.font_txtView);
+        font_test_txt.setTypeface(font);
     }
 }

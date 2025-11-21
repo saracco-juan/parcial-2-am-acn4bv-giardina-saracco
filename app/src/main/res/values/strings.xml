@@ -29,4 +29,7 @@
     <string name="txt_font_sansation">SANSATION</string>
     <string name="txt_font_playfair">PLAYFAIR-DISPLAY</string>
     <string name="txt_font_montserrat">MONTSERRAT</string>
+    <string name="tendencias_subtitulo">Haz click en alguna de las tipografias para luego probarla</string>
+    <string name="probar_fuente_txt">AåBbCc\n#9½\nƒ%£©∑Ø!</string>
+
 </resources>
