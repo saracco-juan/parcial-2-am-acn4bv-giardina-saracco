@@ -46,6 +46,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:onClick="Modificar"
         android:text="Modificar Fuente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_buscar_fuente" />
@@ -56,6 +57,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:onClick="Eliminar"
         android:text="Eliminar Fuente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_modificar_fuente" />

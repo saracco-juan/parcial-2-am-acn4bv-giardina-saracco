@@ -92,6 +92,63 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    public void Eliminar(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "db_administracion", null, 1);
+        SQLiteDatabase Database = admin.getWritableDatabase();
+
+        String id = et_id_fuente.getText().toString();
+
+        if(!id.isEmpty() ){
+            int cantidad = Database.delete("fuentes", "id=" + id, null);
+            Database.close();
+
+            limpiarCampos();
+
+            if(cantidad == 1){
+                Toast.makeText(this, "El registro fue eliminado", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No se encontro la fuente", Toast.LENGTH_SHORT).show();
+            }
+
+        }else{
+            Toast.makeText(this, "Debes llenar el id de la fuente para eliminarla", Toast.LENGTH_SHORT).show();
+            Database.close();
+        }
+
+    }
+
+    public void Modificar(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "db_administracion", null, 1);
+        SQLiteDatabase Database = admin.getWritableDatabase();
+
+        String id = et_id_fuente.getText().toString();
+        String nombre = et_nombre_fuente.getText().toString();
+        String peso = et_peso_fuente.getText().toString();
+        String tamanio = et_tamanio_fuente.getText().toString();
+
+
+        if(!id.isEmpty() && !nombre.isEmpty() && !peso.isEmpty() && !tamanio.isEmpty()){
+
+            ContentValues registro = new ContentValues();
+            registro.put("nombre", nombre);
+            registro.put("peso", peso);
+            registro.put("tamanio", tamanio);
+
+            int cantidad = Database.update("fuentes", registro, "id=" + id, null);
+            Database.close();
+
+            if(cantidad == 1){
+                Toast.makeText(this, "El registro fue modificado", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No se encontro la fuente", Toast.LENGTH_SHORT).show();
+            }
+
+        }else{
+            Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+            Database.close();
+        }
+    }
+
     private void limpiarCampos(){
         et_id_fuente.setText("");
         et_nombre_fuente.setText("");
