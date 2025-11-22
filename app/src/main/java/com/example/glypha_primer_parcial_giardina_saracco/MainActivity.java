@@ -137,4 +137,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(search);
     }
 
+    public void goAdmin(View view){
+        Intent admin = new Intent(this, AdminActivity.class);
+        startActivity(admin);
+    }
+
 }
