@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="4dp">
 
     <TextView
         android:id="@+id/tv_nombre_fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de la Fuente"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
 </LinearLayout>

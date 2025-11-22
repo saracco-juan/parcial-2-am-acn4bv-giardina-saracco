@@ -43,15 +43,12 @@ public class SearchActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.btn_buscar);
         homeBtn = findViewById(R.id.btn_inicio);
 
-        // 1. Cargar todas las fuentes desde la BD
         cargarFuentesDesdeDB();
 
-        // 2. Configurar el RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FuentesAdapter(listaCompletaFuentes);
         recyclerView.setAdapter(adapter);
 
-        // 3. Configurar el listener del SearchView
         setupSearchView();
 
         applySelectedFromIntent(getIntent());
@@ -65,7 +62,6 @@ public class SearchActivity extends AppCompatActivity {
 
         if (cursor.moveToFirst()) {
             do {
-                // Asumiendo que la columna 0 es 'nombre'
                 listaCompletaFuentes.add(new Fuente(cursor.getString(0)));
             } while (cursor.moveToNext());
         }
@@ -78,13 +74,11 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Opcional: acción cuando el usuario presiona "buscar"
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // ¡La magia sucede aquí!
                 filter(newText);
                 return true;
             }
@@ -95,13 +89,11 @@ public class SearchActivity extends AppCompatActivity {
         List<Fuente> filteredList = new ArrayList<>();
 
         for (Fuente item : listaCompletaFuentes) {
-            // Filtrar por nombre, ignorando mayúsculas/minúsculas
             if (item.getNombre().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(item);
             }
         }
 
-        // Actualizar el adaptador con la nueva lista filtrada
         adapter.filterList(filteredList);
     }
 
@@ -116,7 +108,6 @@ public class SearchActivity extends AppCompatActivity {
         if (intent == null) return;
         String selected = intent.getStringExtra("selected_tab");
 
-        // Asignar el botón "search" como seleccionado por defecto si no viene nada.
         if (selected == null) {
             selected = "search";
         }
@@ -126,7 +117,6 @@ public class SearchActivity extends AppCompatActivity {
         else if ("search".equals(selected)) selectedBtn = searchBtn;
         else if ("profile".equals(selected)) selectedBtn = profileBtn;
 
-        // Asegurarse de que los botones existan antes de llamar a changeColorBtn
         if (selectedBtn != null && profileBtn != null && searchBtn != null && homeBtn != null) {
             changeColorBtn(profileBtn, searchBtn, homeBtn, selectedBtn);
         }
