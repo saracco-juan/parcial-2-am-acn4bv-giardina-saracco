@@ -1,4 +1,4 @@
-package com.example.glypha_primer_parcial_giardina_saracco;
+package com.example.glypha_primer_parcial_giardina_saracco.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.glypha_primer_parcial_giardina_saracco.R;
 
 public class MainActivity extends AppCompatActivity {
 

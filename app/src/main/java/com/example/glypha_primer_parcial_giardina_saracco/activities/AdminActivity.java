@@ -1,4 +1,4 @@
-package com.example.glypha_primer_parcial_giardina_saracco;
+package com.example.glypha_primer_parcial_giardina_saracco.activities;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.glypha_primer_parcial_giardina_saracco.R;
+import com.example.glypha_primer_parcial_giardina_saracco.data.db.AdminSQLiteOpenHelper;
 
 
 public class AdminActivity extends AppCompatActivity {

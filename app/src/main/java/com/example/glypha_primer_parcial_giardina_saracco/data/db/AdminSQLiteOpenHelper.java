@@ -1,4 +1,4 @@
-package com.example.glypha_primer_parcial_giardina_saracco;
+package com.example.glypha_primer_parcial_giardina_saracco.data.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
