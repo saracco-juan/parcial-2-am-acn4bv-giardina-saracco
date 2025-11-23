@@ -1,6 +1,7 @@
 package com.example.glypha_primer_parcial_giardina_saracco;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Seccion Inicio en construccion.", Toast.LENGTH_SHORT).show();
 
                 changeColorBtn(profileBtn, searchBtn, homeBtn, homeBtn);
+
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
             }
         });
 

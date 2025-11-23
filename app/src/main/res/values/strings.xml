@@ -16,4 +16,70 @@
     <string name="pablo_martinez">pablo.martinez</string>
     <string name="pablo">Pablo</string>
     <string name="buenos_aires_argentina">Buenos Aires, Argentina</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="glypha">GLYPHA</string>
+    <string name="subtitulo_home">¡Vamos a encontrar tu Tipografía Ideal!</string>
+    <string name="txt_cat_moderna">MODERNA</string>
+    <string name="txt_cat_elegante">ELEGANTE</string>
+    <string name="txt_cat_clasica">CLASICA</string>
+    <string name="txt_cat_creativa">CREATIVA</string>
+    <string name="cat_titulo">Categorías</string>
+    <string name="tendencias_titulo">Tipografias en tendencias</string>
+    <string name="placeholder_input_txt">Escribe aquí para probar la fuente seleccionada</string>
+    <string name="txt_font_roboto">ROBOTO</string>
+    <string name="txt_font_sansation">SANSATION</string>
+    <string name="txt_font_playfair">PLAYFAIR-DISPLAY</string>
+    <string name="txt_font_montserrat">MONTSERRAT</string>
+    <string name="tendencias_subtitulo">Haz click en alguna de las tipografias para luego probarla</string>
+    <string name="probar_fuente_txt">AåBbCc\n#9½\nƒ%£©∑Ø!</string>
+    <string name="title_inspiracion_semanal">Inspiracion Semanal</string>
+    <string name="title_inspiracion_semanal_tendencias">Tendencias</string>
+    <string name="title_inspiracion_semanal_mas_usadas">Mas usadas</string>
+
 </resources>
