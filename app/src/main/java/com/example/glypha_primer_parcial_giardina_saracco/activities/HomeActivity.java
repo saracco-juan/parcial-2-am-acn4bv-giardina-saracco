@@ -43,11 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         textSeccionUnderline();
     }
 
-    public void goMain(View view){
-        Intent main = new Intent(this, MainActivity.class);
-        startActivity(main);
-    }
-
     private void textSeccionUnderline(){
 
         View seccionTendencias = findViewById(R.id.tendencias_underline);
@@ -151,8 +146,6 @@ public class HomeActivity extends AppCompatActivity {
         font_test_txt.setTypeface(font);
     }
 
-
-
     private void handleFontTest(){
 
         EditText inputTxt = findViewById(R.id.inputFont);
@@ -180,6 +173,22 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void goSearch(View view) {
+        Intent search = new Intent(this, SearchActivity.class);
+        search.putExtra("selected_tab", "search");
+        startActivity(search);
+    }
+
+    public void goAdmin(View view){
+        Intent admin = new Intent(this, AdminActivity.class);
+        startActivity(admin);
+    }
+
+    public void goHome(View view){
+        Intent home = new Intent(this, HomeActivity.class);
+        startActivity(home);
     }
 
 
