@@ -52,6 +52,8 @@
             android:id="@+id/scrollGeneral"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="0dp">
 
