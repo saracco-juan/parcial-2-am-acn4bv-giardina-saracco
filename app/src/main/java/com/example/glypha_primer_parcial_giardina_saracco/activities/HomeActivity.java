@@ -36,8 +36,6 @@ public class HomeActivity extends AppCompatActivity {
 
         textTendenciasCards();
 
-        fontClickListeners();
-
         handleFontTest();
 
         textSeccionUnderline();
@@ -55,90 +53,67 @@ public class HomeActivity extends AppCompatActivity {
 
     private void textCatCards(){
 
-        View cardModerna = findViewById(R.id.cardModerna);
-        View cardClasica = findViewById(R.id.cardClasica);
-        View cardElegante = findViewById(R.id.cardElegante);
-        View cardCreativa = findViewById(R.id.cardCreativa);
+        int[] catCardIds = {
+                R.id.cardModerna,
+                R.id.cardElegante,
+                R.id.cardClasica,
+                R.id.cardCreativa
+        };
+
+        int[] catLabelRes = {
+                R.string.txt_cat_moderna,
+                R.string.txt_cat_elegante,
+                R.string.txt_cat_clasica,
+                R.string.txt_cat_creativa
+        };
 
 
-
-        ((TextView) cardModerna.findViewById(R.id.txtCard)).setText(getString(R.string.txt_cat_moderna));
-        ((TextView) cardClasica.findViewById(R.id.txtCard)).setText(getString(R.string.txt_cat_clasica));
-        ((TextView) cardElegante.findViewById(R.id.txtCard)).setText(getString(R.string.txt_cat_elegante));
-        ((TextView) cardCreativa.findViewById(R.id.txtCard)).setText(getString(R.string.txt_cat_creativa));
-
-
+        for (int i = 0; i < catCardIds.length; i++) {
+            View card = findViewById(catCardIds[i]);
+            TextView txt = card.findViewById(R.id.txtCard);
+            txt.setText(getString(catLabelRes[i]));
+        }
     }
 
     private void textTendenciasCards() {
 
-        View cardRoboto = findViewById(R.id.cardRoboto);
-        View cardPlayFair = findViewById(R.id.cardPlayFair);
-        View cardMontserrat = findViewById(R.id.cardMontserrat);
-        View cardSansation = findViewById(R.id.cardSansation);
+        int[] fontCardIds = {
+                R.id.cardRoboto,
+                R.id.cardPlayFair,
+                R.id.cardMontserrat,
+                R.id.cardSansation
+        };
 
-        Typeface roboto   = ResourcesCompat.getFont(this, R.font.roboto);
-        Typeface playfair = ResourcesCompat.getFont(this, R.font.playfair_display);
-        Typeface montserrat = ResourcesCompat.getFont(this, R.font.montserrat);
-        Typeface sansation = ResourcesCompat.getFont(this, R.font.sansation);
+        int[] fontListIds = {
+                R.font.roboto,
+                R.font.playfair_display,
+                R.font.montserrat,
+                R.font.sansation
+        };
 
-        ((TextView) cardRoboto.findViewById(R.id.txtCard)).setText(getString(R.string.txt_font_roboto));
-        ((TextView) cardRoboto.findViewById(R.id.txtCard)).setTypeface(roboto);
+        int[] cardLabels = {
+                R.string.txt_font_roboto,
+                R.string.txt_font_playfair,
+                R.string.txt_font_montserrat,
+                R.string.txt_font_sansation
+        };
 
-        ((TextView) cardPlayFair.findViewById(R.id.txtCard)).setText(getString(R.string.txt_font_playfair));
-        ((TextView) cardPlayFair.findViewById(R.id.txtCard)).setTypeface(playfair);
-        ((TextView) cardPlayFair.findViewById(R.id.txtCard)).setTextSize(12);
+        for (int i = 0; i < fontCardIds.length; i++) {
 
-        ((TextView) cardMontserrat.findViewById(R.id.txtCard)).setText(getString(R.string.txt_font_montserrat));
-        ((TextView) cardMontserrat.findViewById(R.id.txtCard)).setTypeface(montserrat);
+            View card = findViewById(fontCardIds[i]);
+            Typeface font = ResourcesCompat.getFont(this, fontListIds[i]);
 
-        ((TextView) cardSansation.findViewById(R.id.txtCard)).setText(getString(R.string.txt_font_sansation));
-        ((TextView) cardSansation.findViewById(R.id.txtCard)).setTypeface(sansation);
-    }
+            ((TextView) card.findViewById(R.id.txtCard)).setText(getString(cardLabels[i]));
+            ((TextView) card.findViewById(R.id.txtCard)).setTypeface(font);
 
-    private void fontClickListeners(){
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        View cardRoboto = findViewById(R.id.cardRoboto);
-        View cardPlayFair = findViewById(R.id.cardPlayFair);
-        View cardMontserrat = findViewById(R.id.cardMontserrat);
-        View cardSansation = findViewById(R.id.cardSansation);
-
-        cardRoboto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Typeface roboto   = ResourcesCompat.getFont(getApplicationContext(), R.font.roboto);
-                changeFontTxt(roboto);
-            }
-        });
-
-        cardPlayFair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Typeface playFair   = ResourcesCompat.getFont(getApplicationContext(), R.font.playfair_display);
-                changeFontTxt(playFair);
-            }
-        });
-
-        cardMontserrat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Typeface montserrat   = ResourcesCompat.getFont(getApplicationContext(), R.font.montserrat);
-                changeFontTxt(montserrat);
-            }
-        });
-
-        cardSansation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Typeface sansation   = ResourcesCompat.getFont(getApplicationContext(), R.font.sansation);
-                changeFontTxt(sansation);
-            }
-        });
-
+                    changeFontTxt(font);
+                }
+            });
+        }
     }
 
     private void changeFontTxt(Typeface font){
