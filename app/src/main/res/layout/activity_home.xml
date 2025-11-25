@@ -234,19 +234,62 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="goMain"
-                        android:text="Main" />
-
                 </LinearLayout>
 
             </LinearLayout>
 
 
         </ScrollView>
+
+        <!-- Navbar -->
+
+        <LinearLayout
+            android:id="@+id/navbar"
+            android:layout_width="350dp"
+            android:layout_height="63dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_navbar"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btn_inicio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_btn_navbar"
+                android:drawableTop="@drawable/icon_home"
+                android:gravity="center"
+                android:onClick="goHome"
+                android:text="@string/inicio"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btn_buscar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_btn_navbar"
+                android:drawableTop="@drawable/icon_search"
+                android:gravity="center"
+                android:onClick="goSearch"
+                android:text="@string/buscar"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btn_perfil"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_btn_navbar"
+                android:drawableTop="@drawable/icon_profile"
+                android:gravity="center"
+                android:text="@string/perfil"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
