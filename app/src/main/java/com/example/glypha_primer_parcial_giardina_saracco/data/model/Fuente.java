@@ -6,7 +6,9 @@ public class Fuente {
     private String peso;
     private String tamanio;
 
-    //TODO: Agregar categoria
+    // Constructor vacío requerido por Firestore
+    public Fuente() {
+    }
 
     public Fuente(String nombre) {
         this.nombre = nombre;
@@ -24,11 +26,20 @@ public class Fuente {
         this.nombre = nombre;
     }
 
+    // Getters para todas las propiedades
     public int getId() {
         return id;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public String getTamanio() {
+        return tamanio;
     }
 }

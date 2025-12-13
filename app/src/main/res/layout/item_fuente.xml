@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="4dp">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_nombre_fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/btn_favorito"
         android:text="Nombre de la Fuente"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_favorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/btn_star_big_off" />
+
+</RelativeLayout>

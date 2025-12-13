@@ -3,6 +3,7 @@ package com.example.glypha_primer_parcial_giardina_saracco.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,9 +16,15 @@ import java.util.List;
 public class FuentesAdapter extends RecyclerView.Adapter<FuentesAdapter.FuenteViewHolder> {
 
     private List<Fuente> listaFuentes;
+    private OnFavoriteClickListener favoriteClickListener;
 
-    public FuentesAdapter(List<Fuente> listaFuentes) {
+    public interface OnFavoriteClickListener {
+        void onFavoriteClick(Fuente fuente);
+    }
+
+    public FuentesAdapter(List<Fuente> listaFuentes, OnFavoriteClickListener listener) {
         this.listaFuentes = listaFuentes;
+        this.favoriteClickListener = listener;
     }
 
     @NonNull
@@ -31,9 +38,16 @@ public class FuentesAdapter extends RecyclerView.Adapter<FuentesAdapter.FuenteVi
     public void onBindViewHolder(@NonNull FuenteViewHolder holder, int position) {
         Fuente fuente = listaFuentes.get(position);
         holder.tvNombreFuente.setText(fuente.getNombre());
+
+        if (favoriteClickListener != null) {
+            holder.btnFavorito.setVisibility(View.VISIBLE);
+            holder.btnFavorito.setOnClickListener(v -> {
+                favoriteClickListener.onFavoriteClick(fuente);
+            });
+        } else {
+            holder.btnFavorito.setVisibility(View.GONE);
+        }
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -48,11 +62,12 @@ public class FuentesAdapter extends RecyclerView.Adapter<FuentesAdapter.FuenteVi
 
     public static class FuenteViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombreFuente;
+        ImageButton btnFavorito;
 
         public FuenteViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNombreFuente = itemView.findViewById(R.id.tv_nombre_fuente);
+            btnFavorito = itemView.findViewById(R.id.btn_favorito);
         }
     }
 }
-
