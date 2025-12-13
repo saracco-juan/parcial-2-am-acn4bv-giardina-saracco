@@ -14,18 +14,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+
+    private FirebaseFirestore db;
     Button homeBtn, searchBtn, profileBtn;
 
     @SuppressLint("SetTextI18n")
@@ -47,13 +57,27 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        db = FirebaseFirestore.getInstance();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser == null){
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         }else{
-            //TODO: getDatos
+            db
+                    .collection("users")
+                    .whereEqualTo("uid","shEWBQOgucOom5VMvugtQaI7Vrm1")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Se trajo desde la base", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
         }
 
         profileBtn = findViewById(R.id.btn_perfil);
