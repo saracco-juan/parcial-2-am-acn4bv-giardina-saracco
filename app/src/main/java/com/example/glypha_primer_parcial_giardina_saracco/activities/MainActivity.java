@@ -172,6 +172,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void handleLogOut(View view){
+
+        if(mAuth == null) return;
+        if(mAuth.getCurrentUser() == null) return;
+
+        mAuth.signOut();
+
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
+
+    }
+
     public void goSearch(View view) {
         Intent search = new Intent(this, SearchActivity.class);
         search.putExtra("selected_tab", "search");

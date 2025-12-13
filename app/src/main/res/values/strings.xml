@@ -49,5 +49,6 @@
     <string name="txt_login_forgot_pass">¿No tienes cuenta? Registrarse</string>
     <string name="txt_login_forgot_pass_2">¿Olvidaste tu contraseña?</string>
     <string name="admin">Admin</string>
+    <string name="txt_btn_cerrar_sesion">Cerrar sesion</string>
 
 </resources>
