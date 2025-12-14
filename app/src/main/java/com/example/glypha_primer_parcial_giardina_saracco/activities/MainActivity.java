@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,10 +20,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -32,14 +41,16 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
-    private Button homeBtn, searchBtn, profileBtn;
 
+    private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -52,15 +63,42 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
         db = FirebaseFirestore.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
+
+        if(currentUser == null){
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
             finish(); // Cierra esta actividad para que el usuario no pueda volver atrás
             return;
+        }else{
+            db
+                    .collection("users")
+                    .whereEqualTo("uid",currentUser.getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+
+                                QuerySnapshot result = task.getResult();
+                                String name = "";
+                                for (DocumentSnapshot ds: result.getDocuments()) {
+
+                                    name = ds.getData().get("name").toString();
+                                    String about = ds.getData().get("about").toString();
+
+                                }
+
+                                Toast.makeText(getApplicationContext(), "Nombre:"+name+" Uid"+currentUser.getUid(), Toast.LENGTH_LONG).show();
+
+                            }
+                        }
+                    });
         }
 
         profileBtn = findViewById(R.id.btn_perfil);
@@ -98,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         }
     }
-    
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -120,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             changeColorBtn(profileBtn, searchBtn, homeBtn, selectedBtn);
         }
     }
-    
+
     public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected) {
         Button[] buttons = {btnProfile, btnSearch, btnHome};
         for (Button btn : buttons) {
@@ -145,6 +183,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void handleLogOut(View view){
+
+        if(mAuth == null) return;
+        if(mAuth.getCurrentUser() == null) return;
+
+        mAuth.signOut();
+
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
+
     }
 
     public void goSearch(View view) {

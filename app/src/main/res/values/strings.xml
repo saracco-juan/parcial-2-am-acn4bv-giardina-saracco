@@ -8,7 +8,7 @@
     <string name="usuario">\@usuario</string>
     <string name="favoritos">Favoritos</string>
     <string name="mi_nombre_es_pablo_martinez_me_llamo_la_atencion_esta_aplicaci_n_por_la_variedad_de_tipografias_que_ofrec_a_soy_progamador_front_end_y_pretendo_utilizar_las_fuentes_para_futuros_trabajos">Mi nombre es Pablo Martinez. Me llamo la atencion esta aplicación por la variedad de tipografias que ofrecía. Soy progamador front end y pretendo utilizar las fuentes para futuros trabajos.</string>
-    <string name="acerca_de">ACERCA DE</string>
+    <string name="acerca_de">Acerca de</string>
     <string name="seguidores">SEGUIDORES</string>
     <string name="_30">30</string>
     <string name="siguiendo">SIGUIENDO</string>
@@ -49,5 +49,6 @@
     <string name="txt_login_forgot_pass">¿No tienes cuenta? Registrarse</string>
     <string name="txt_login_forgot_pass_2">¿Olvidaste tu contraseña?</string>
     <string name="admin">Admin</string>
+    <string name="txt_btn_cerrar_sesion">Cerrar sesion</string>
 
 </resources>

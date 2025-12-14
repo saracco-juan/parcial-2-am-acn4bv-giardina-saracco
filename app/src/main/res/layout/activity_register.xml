@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity"
+    tools:context=".activities.RegisterActivity"
     android:background="@drawable/bg_login">
 
     <LinearLayout
-        android:id="@+id/login_containter"
+        android:id="@+id/register_containter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -33,20 +33,44 @@
             android:layout_marginBottom="60dp"
             android:textColor="@color/bg_yellow" />
 
+        <!-- Nombre -->
+        <TextView
+            android:id="@+id/txt_register_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/bg_yellow" />
+
+
+        <EditText
+            android:id="@+id/name_register_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_input"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#80FFFFFF"/>
+
         <!-- Mail -->
         <TextView
-            android:id="@+id/txt_login_mail"
+            android:id="@+id/txt_register_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_login_mail"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="24dp"
             android:textColor="@color/bg_yellow" />
 
 
         <EditText
-            android:id="@+id/mail_login_input"
+            android:id="@+id/mail_register_input"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_input"
@@ -56,9 +80,32 @@
             android:textColorHint="#80FFFFFF"
             android:inputType="textEmailAddress" />
 
+        <!-- Acerca de -->
+        <TextView
+            android:id="@+id/txt_register_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/acerca_de"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/bg_yellow" />
+
+
+        <EditText
+            android:id="@+id/about_register_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_input"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#80FFFFFF"/>
+
         <!-- Contraseña -->
         <TextView
-            android:id="@+id/txt_login_password"
+            android:id="@+id/txt_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_login_password"
@@ -70,7 +117,7 @@
 
 
         <EditText
-            android:id="@+id/password_login_input"
+            android:id="@+id/password_register_input"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_input"
@@ -82,7 +129,7 @@
 
         <!-- Btn entrar -->
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -93,17 +140,8 @@
             android:textSize="14sp"
             android:background="@android:color/transparent"
             android:textAllCaps="true"
-            android:onClick="handleLogin"/>
-
-
-        <TextView
-            android:id="@+id/txt_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_login_forgot_pass"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
-            android:onClick="goRegister"/>
+            android:onClick="handleRegster"/>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

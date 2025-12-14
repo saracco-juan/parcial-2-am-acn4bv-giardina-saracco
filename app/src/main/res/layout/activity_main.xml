@@ -262,6 +262,17 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_log_out"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleLogOut"
+            android:text="@string/txt_btn_cerrar_sesion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
