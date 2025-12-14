@@ -16,21 +16,29 @@
         android:layout_marginTop="120dp"
         android:background="@drawable/bg_content">
 
+        <TextView
+            android:id="@+id/tv_favoritos_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="Fuente Favoritas"
+            android:textColor="@color/bg_yellow"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/rv_favoritos"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/fav_container"
-            android:layout_width="350dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="300dp"
-            android:orientation="horizontal"
-            android:background="@drawable/line"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_favoritos"
+            android:layout_width="379dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/bg_yellow"
             app:layout_constraintBottom_toTopOf="@+id/navbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name_container"
-            app:layout_constraintVertical_bias="0.504">
-
-        </LinearLayout>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/navbar"
@@ -134,7 +142,7 @@
             android:layout_height="95dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/fav_container"
+            app:layout_constraintBottom_toTopOf="@+id/about_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name_container"
@@ -216,31 +224,22 @@
         <LinearLayout
             android:id="@+id/about_container"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:gravity="start"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/fav_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seguidores_container"
-            app:layout_constraintVertical_bias="0.19999999"
+            android:layout_height="100dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-           >
-
-            <Button
-                android:id="@+id/btn_log_out"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_btn_cerrar_sesion"
-                android:onClick="handleLogOut"/>
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/tv_favoritos_titulo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seguidores_container">
 
             <TextView
                 android:id="@+id/acerca_de_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/acerca_de"
                 android:layout_marginBottom="10dp"
+                android:text="@string/acerca_de"
                 android:textColor="@color/bg_yellow"
                 android:textSize="16sp" />
 
@@ -248,20 +247,31 @@
                 android:id="@+id/acerca_de_texto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="@string/mi_nombre_es_pablo_martinez_me_llamo_la_atencion_esta_aplicaci_n_por_la_variedad_de_tipografias_que_ofrec_a_soy_progamador_front_end_y_pretendo_utilizar_las_fuentes_para_futuros_trabajos"
                 android:textColor="@color/blue"
-                android:layout_marginBottom="10dp"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="4dp"
                 android:text="@string/buenos_aires_argentina"
                 android:textColor="@color/blue"
                 android:textSize="16sp" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_log_out"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleLogOut"
+            android:text="@string/txt_btn_cerrar_sesion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,11 @@ package com.example.glypha_primer_parcial_giardina_saracco.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,10 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
+import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,14 +31,22 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
     private FirebaseFirestore db;
-    Button homeBtn, searchBtn, profileBtn;
 
+    private RecyclerView rvFavoritos;
+    private FuentesAdapter fuentesAdapter;
+    private List<Fuente> listaFavoritos;
+
+    private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser == null){
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
+            finish(); // Cierra esta actividad para que el usuario no pueda volver atrás
+            return;
         }else{
             db
                     .collection("users")
@@ -95,10 +105,36 @@ public class MainActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.btn_buscar);
         homeBtn = findViewById(R.id.btn_inicio);
 
-        //Elementos creados dinamicamente
-        createFavSeccion();
+        // Configuración del RecyclerView para favoritos
+        rvFavoritos = findViewById(R.id.rv_favoritos);
+        rvFavoritos.setLayoutManager(new LinearLayoutManager(this));
+        listaFavoritos = new ArrayList<>();
+        fuentesAdapter = new FuentesAdapter(listaFavoritos, null); // No necesita listener aquí
+        rvFavoritos.setAdapter(fuentesAdapter);
 
+        cargarFavoritos();
         applySelectedFromIntent(getIntent());
+    }
+
+    private void cargarFavoritos() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            db.collection("users").document(userId).collection("favorites")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        listaFavoritos.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Fuente fuente = document.toObject(Fuente.class);
+                            listaFavoritos.add(fuente);
+                        }
+                        fuentesAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error al cargar favoritos.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        }
     }
 
     @Override
@@ -123,41 +159,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void createFavSeccion() {
-
-        LinearLayout favContainer = findViewById(R.id.fav_container);
-
-        favContainer.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Seccion en desarrollo", Toast.LENGTH_SHORT).show());
-
-        TextView favoritos = new TextView(this);
-        favoritos.setTextColor(getColor(R.color.bg_yellow));
-        favoritos.setText(getString(R.string.favoritos));
-        favoritos.setTextSize(16);
-        favoritos.setTypeface(null, Typeface.BOLD);
-
-        LinearLayout.LayoutParams textoParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
-        );
-        favoritos.setLayoutParams(textoParams);
-
-        ImageView arrowIcon = new ImageView(this);
-        arrowIcon.setImageResource(R.drawable.icon_arrow);
-        arrowIcon.setColorFilter(getColor(R.color.bg_yellow));
-
-        favContainer.addView(favoritos);
-        favContainer.addView(arrowIcon);
-    }
-
     public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected) {
-
         Button[] buttons = {btnProfile, btnSearch, btnHome};
-
         for (Button btn : buttons) {
-
             if (btn == null) continue;
-
             if (btn == btnSelected) {
-
                 btn.setTextColor(getColor(R.color.blue));
                 Drawable[] icons = btn.getCompoundDrawables();
                 Drawable icon = icons[1];
@@ -166,9 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     icon.setTint(getColor(R.color.blue));
                     btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
                 }
-
             } else {
-
                 btn.setTextColor(getColor(R.color.black));
                 Drawable[] icons = btn.getCompoundDrawables();
                 Drawable icon = icons[1];
@@ -178,9 +182,7 @@ public class MainActivity extends AppCompatActivity {
                     btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
                 }
             }
-
         }
-
     }
 
     public void handleLogOut(View view){
@@ -210,5 +212,4 @@ public class MainActivity extends AppCompatActivity {
         Intent home = new Intent(this, HomeActivity.class);
         startActivity(home);
     }
-
 }
