@@ -69,10 +69,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                     String uid = task.getResult().getUser().getUid();
 
-                    HashMap user = new HashMap();
+                    HashMap<String, String> user = new HashMap();
                     user.put("name",name);
                     user.put("uid",uid);
                     user.put("about", about);
+                    user.put("mail",mail);
 
                     db
                         .collection("users")

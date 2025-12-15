@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
+
+    private String name;
+    private String about;
+
+    private String mail;
 
     private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
@@ -86,14 +92,16 @@ public class MainActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
 
                                 QuerySnapshot result = task.getResult();
-                                String name = "";
+
                                 for (DocumentSnapshot ds: result.getDocuments()) {
 
                                     name = ds.getData().get("name").toString();
-                                    String about = ds.getData().get("about").toString();
+                                    about = ds.getData().get("about").toString();
+                                    mail = ds.getData().get("mail").toString();
 
                                 }
-
+                                //Cargar la informacion del usuario en la vista
+                                loadUserData();
                                 Toast.makeText(getApplicationContext(), "Nombre:"+name+" Uid"+currentUser.getUid(), Toast.LENGTH_LONG).show();
 
                             }
@@ -114,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
 
         cargarFavoritos();
         applySelectedFromIntent(getIntent());
+
+
+
     }
 
     private void cargarFavoritos() {
@@ -194,6 +205,22 @@ public class MainActivity extends AppCompatActivity {
 
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
+
+    }
+
+    public void loadUserData(){
+
+        TextView inputName = findViewById(R.id.txt_profile_name);
+
+        inputName.setText(name);
+
+        TextView inputMail = findViewById(R.id.txt_profile_mail);
+
+        inputMail.setText(mail);
+
+        TextView inputAbout = findViewById(R.id.acerca_de_texto);
+
+        inputAbout.setText(about);
 
     }
 

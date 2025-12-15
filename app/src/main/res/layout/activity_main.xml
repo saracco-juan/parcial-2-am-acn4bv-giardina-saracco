@@ -20,8 +20,8 @@
             android:id="@+id/tv_favoritos_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"
             android:text="Fuente Favoritas"
             android:textColor="@color/bg_yellow"
             android:textSize="16sp"
@@ -33,7 +33,7 @@
             android:layout_width="379dp"
             android:layout_height="140dp"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="52dp"
             android:background="@color/bg_yellow"
             app:layout_constraintBottom_toTopOf="@+id/navbar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,11 +113,10 @@
 
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txt_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="@string/pablo"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow"
                 android:textSize="30sp"
@@ -127,16 +126,15 @@
                 />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txt_profile_mail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:text="@string/pablo_martinez"
                 android:textAlignment="center"
                 android:textColor="@color/bg_yellow" />
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/seguidores_container"
             android:layout_width="300dp"
             android:layout_height="95dp"
@@ -219,7 +217,7 @@
                     android:textColor="@color/bg_yellow"
                     android:textSize="16sp" />
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/about_container"
@@ -232,7 +230,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_favoritos_titulo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seguidores_container">
+            app:layout_constraintTop_toBottomOf="@+id/user_name_container">
 
             <TextView
                 android:id="@+id/acerca_de_titulo"
@@ -248,7 +246,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/mi_nombre_es_pablo_martinez_me_llamo_la_atencion_esta_aplicaci_n_por_la_variedad_de_tipografias_que_ofrec_a_soy_progamador_front_end_y_pretendo_utilizar_las_fuentes_para_futuros_trabajos"
                 android:textColor="@color/blue"
                 android:textSize="16sp" />
 
