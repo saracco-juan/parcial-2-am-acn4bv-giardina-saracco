@@ -74,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                     user.put("uid",uid);
                     user.put("about", about);
                     user.put("mail",mail);
+                    user.put("rol", "cliente");
 
                     db
                         .collection("users")

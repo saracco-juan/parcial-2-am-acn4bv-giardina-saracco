@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,15 +28,16 @@ import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,11 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
-
-    private String name;
-    private String about;
-
-    private String mail;
+    private User userLoged;
 
     private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
@@ -95,15 +92,18 @@ public class MainActivity extends AppCompatActivity {
 
                                 for (DocumentSnapshot ds: result.getDocuments()) {
 
-                                    name = ds.getData().get("name").toString();
-                                    about = ds.getData().get("about").toString();
-                                    mail = ds.getData().get("mail").toString();
+                                    String name = ds.getData().get("name").toString();
+                                    String about = ds.getData().get("about").toString();
+                                    String mail = ds.getData().get("mail").toString();
+                                    String rol = ds.getData().get("rol").toString();
+
+                                    userLoged = new User(name, rol, mail, about);
 
                                 }
                                 //Cargar la informacion del usuario en la vista
                                 loadUserData();
-                                Toast.makeText(getApplicationContext(), "Nombre:"+name+" Uid"+currentUser.getUid(), Toast.LENGTH_LONG).show();
 
+                                handleNavbar();
                             }
                         }
                     });
@@ -208,25 +208,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void handleNavbar (){
+
+        Button btn_admin = findViewById(R.id.btn_admin);
+
+        if(userLoged.getRol().equals("cliente")){
+            btn_admin.setVisibility(View.GONE);
+        }
+
+    }
+
     public void loadUserData(){
 
         TextView inputName = findViewById(R.id.txt_profile_name);
 
-        inputName.setText(name);
+        inputName.setText(userLoged.getName());
 
         TextView inputMail = findViewById(R.id.txt_profile_mail);
 
-        inputMail.setText(mail);
+        inputMail.setText(userLoged.getMail());
 
         TextView inputAbout = findViewById(R.id.acerca_de_texto);
 
-        inputAbout.setText(about);
+        inputAbout.setText(userLoged.getAbout());
 
     }
 
     public void goSearch(View view) {
         Intent search = new Intent(this, SearchActivity.class);
         search.putExtra("selected_tab", "search");
+
+        search.putExtra("user", userLoged);
         startActivity(search);
     }
 
@@ -237,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goHome(View view){
         Intent home = new Intent(this, HomeActivity.class);
+        home.putExtra("user", userLoged);
         startActivity(home);
     }
 }
