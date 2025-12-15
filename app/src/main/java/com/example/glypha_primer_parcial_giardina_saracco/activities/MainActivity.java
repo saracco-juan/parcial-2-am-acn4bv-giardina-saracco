@@ -9,39 +9,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.glypha_primer_parcial_giardina_saracco.R;
-
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
-
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 
-public class MainActivity extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+public class MainActivity extends BaseActivity {
 
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
@@ -65,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-
-        db = FirebaseFirestore.getInstance();
+        //metodo traido desde BaseActivity
+        initFirebase();
 
         //Get usuario
         userLoged = (User) getIntent().getSerializableExtra("user");

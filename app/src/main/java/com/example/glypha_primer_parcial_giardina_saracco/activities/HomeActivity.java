@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +16,6 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.example.glypha_primer_parcial_giardina_saracco.R;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,10 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class HomeActivity extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+public class HomeActivity extends BaseActivity {
 
     private User userLoged;
 
@@ -47,9 +41,8 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        mAuth = FirebaseAuth.getInstance();
-
-        db = FirebaseFirestore.getInstance();
+        //metodo traido desde BaseActivity
+        initFirebase();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 

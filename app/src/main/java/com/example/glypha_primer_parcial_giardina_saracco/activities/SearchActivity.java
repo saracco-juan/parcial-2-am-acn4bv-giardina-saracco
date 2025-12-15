@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.glypha_primer_parcial_giardina_saracco.R;
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.db.AdminSQLiteOpenHelper;
@@ -22,11 +20,10 @@ import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements FuentesAdapter.OnFavoriteClickListener {
+public class SearchActivity extends BaseActivity implements FuentesAdapter.OnFavoriteClickListener {
 
     private Button profileBtn;
     private Button homeBtn;
@@ -35,8 +32,6 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
     private RecyclerView recyclerView;
     private FuentesAdapter adapter;
     private List<Fuente> listaCompletaFuentes;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
 
     private User userLoged;
 
@@ -45,9 +40,8 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
 
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
+        //metodo traido desde BaseActivity
+        initFirebase();
 
 
         searchView = findViewById(R.id.sv_1);
