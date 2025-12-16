@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.glypha_primer_parcial_giardina_saracco.R;
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.db.AdminSQLiteOpenHelper;
@@ -22,32 +20,24 @@ import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements FuentesAdapter.OnFavoriteClickListener {
-
-    private Button profileBtn;
-    private Button homeBtn;
-    private Button searchBtn;
+public class SearchActivity extends BaseActivity implements FuentesAdapter.OnFavoriteClickListener {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private FuentesAdapter adapter;
     private List<Fuente> listaCompletaFuentes;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
 
-    private User userLoged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
 
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
+        //metodo traido desde BaseActivity
+        initNavbarButtons();
+        initFirebase();
 
 
         searchView = findViewById(R.id.sv_1);
@@ -75,15 +65,6 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
         applySelectedFromIntent(getIntent());
     }
 
-    public void handleNavbar (){
-
-        Button btn_admin = findViewById(R.id.btn_admin);
-
-        if(userLoged.getRol().equals("cliente")){
-            btn_admin.setVisibility(View.GONE);
-        }
-
-    }
 
     @Override
     public void onFavoriteClick(Fuente fuente) {
@@ -147,67 +128,4 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
         adapter.filterList(filteredList);
     }
 
-    public void goHome(View view) {
-        Intent home = new Intent(this, HomeActivity.class);
-        home.putExtra("selected_tab", "home");
-        home.putExtra("user", userLoged);
-        startActivity(home);
-    }
-
-    public void goProfile(View view){
-        Intent profile = new Intent(this, MainActivity.class);
-        profile.putExtra("selected_tab", "profile");
-        profile.putExtra("user", userLoged);
-        startActivity(profile);
-    }
-
-    public void goAdmin(View view){
-        Intent admin = new Intent(this, AdminActivity.class);
-        admin.putExtra("selected_tab", "admin");
-        startActivity(admin);
-    }
-
-    private void applySelectedFromIntent(Intent intent) {
-        if (intent == null) return;
-        String selected = intent.getStringExtra("selected_tab");
-
-        if (selected == null) {
-            selected = "search";
-        }
-
-        Button selectedBtn = null;
-        if ("home".equals(selected)) selectedBtn = homeBtn;
-        else if ("search".equals(selected)) selectedBtn = searchBtn;
-        else if ("profile".equals(selected)) selectedBtn = profileBtn;
-
-        if (selectedBtn != null && profileBtn != null && searchBtn != null && homeBtn != null) {
-            changeColorBtn(profileBtn, searchBtn, homeBtn, selectedBtn);
-        }
-    }
-
-    public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected) {
-        Button[] buttons = {btnProfile, btnSearch, btnHome};
-        for (Button btn : buttons) {
-            if (btn == null) continue;
-            if (btn == btnSelected) {
-                btn.setTextColor(getColor(R.color.blue));
-                Drawable[] icons = btn.getCompoundDrawables();
-                Drawable icon = icons[1];
-                if (icon != null) {
-                    icon = icon.mutate();
-                    icon.setTint(getColor(R.color.blue));
-                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-                }
-            } else {
-                btn.setTextColor(getColor(R.color.black));
-                Drawable[] icons = btn.getCompoundDrawables();
-                Drawable icon = icons[1];
-                if (icon != null) {
-                    icon = icon.mutate();
-                    icon.setTint(getColor(R.color.black));
-                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-                }
-            }
-        }
-    }
 }

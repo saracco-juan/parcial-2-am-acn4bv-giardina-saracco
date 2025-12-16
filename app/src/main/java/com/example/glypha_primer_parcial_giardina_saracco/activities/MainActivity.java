@@ -9,44 +9,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.glypha_primer_parcial_giardina_saracco.R;
-
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
-
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 
-public class MainActivity extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+public class MainActivity extends BaseActivity {
 
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
-    private User userLoged;
 
     private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
@@ -65,20 +50,15 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-
-        db = FirebaseFirestore.getInstance();
+        //metodo traido desde BaseActivity
+        initNavbarButtons();
+        initFirebase();
 
         //Get usuario
         userLoged = (User) getIntent().getSerializableExtra("user");
 
         loadUserData();
         handleNavbar();
-
-        profileBtn = findViewById(R.id.btn_perfil);
-        searchBtn = findViewById(R.id.btn_buscar);
-        homeBtn = findViewById(R.id.btn_inicio);
 
         // Configuración del RecyclerView para favoritos
         rvFavoritos = findViewById(R.id.rv_favoritos);
@@ -133,54 +113,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        applySelectedFromIntent(intent);
-    }
-
-    private void applySelectedFromIntent(Intent intent) {
-        if (intent == null) return;
-        String selected = intent.getStringExtra("selected_tab");
-        if (selected == null) return;
-
-        Button selectedBtn = null;
-        if ("home".equals(selected)) selectedBtn = homeBtn;
-        else if ("search".equals(selected)) selectedBtn = searchBtn;
-        else if ("profile".equals(selected)) selectedBtn = profileBtn;
-
-        if (selectedBtn != null) {
-            changeColorBtn(profileBtn, searchBtn, homeBtn, selectedBtn);
-        }
-    }
-
-    public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected) {
-        Button[] buttons = {btnProfile, btnSearch, btnHome};
-        for (Button btn : buttons) {
-            if (btn == null) continue;
-            if (btn == btnSelected) {
-                btn.setTextColor(getColor(R.color.blue));
-                Drawable[] icons = btn.getCompoundDrawables();
-                Drawable icon = icons[1];
-                if (icon != null) {
-                    icon = icon.mutate();
-                    icon.setTint(getColor(R.color.blue));
-                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-                }
-            } else {
-                btn.setTextColor(getColor(R.color.black));
-                Drawable[] icons = btn.getCompoundDrawables();
-                Drawable icon = icons[1];
-                if (icon != null) {
-                    icon = icon.mutate();
-                    icon.setTint(getColor(R.color.black));
-                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-                }
-            }
-        }
-    }
-
     public void handleLogOut(View view){
 
         if(mAuth == null) return;
@@ -193,32 +125,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void handleNavbar (){
 
-        Button btn_admin = findViewById(R.id.btn_admin);
-
-        if(userLoged.getRol().equals("cliente")){
-            btn_admin.setVisibility(View.GONE);
-        }
-
-    }
-
-    public void goSearch(View view) {
-        Intent search = new Intent(this, SearchActivity.class);
-        search.putExtra("selected_tab", "search");
-
-        search.putExtra("user", userLoged);
-        startActivity(search);
-    }
-
-    public void goAdmin(View view){
-        Intent admin = new Intent(this, AdminActivity.class);
-        startActivity(admin);
-    }
-
-    public void goHome(View view){
-        Intent home = new Intent(this, HomeActivity.class);
-        home.putExtra("user", userLoged);
-        startActivity(home);
-    }
 }
